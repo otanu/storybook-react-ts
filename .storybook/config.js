@@ -1,8 +1,13 @@
-import { configure } from '@storybook/react';
+import { configure } from "@storybook/react";
+import { setConsoleOptions } from "@storybook/addon-console";
+
+setConsoleOptions({
+  panelExclude: []
+});
 
 function loadStories() {
-  require('../src/stories');
-  const req = require.context("../src", true, /.stories.tsx$/);
+  require("../src/stories");
+  const req = require.context("../src", true, /.stories.(tsx|js)$/);
   req.keys().forEach(filename => req(filename));
 }
 
