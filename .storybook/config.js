@@ -6,8 +6,10 @@ setConsoleOptions({
 });
 
 function loadStories() {
-  require("../src/stories");
-  const req = require.context("../src", true, /.stories.(tsx|js)$/);
+  let req = require.context("../src/stories", true, /.(tsx|js)$/);
+  req.keys().forEach(filename => req(filename));
+
+  req = require.context("../src", true, /.stories.(tsx|js)$/);
   req.keys().forEach(filename => req(filename));
 }
 
